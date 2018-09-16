@@ -1,0 +1,10 @@
+
+def find_divisors(num)
+  ans = []
+  for i in 1..(num/2)
+    ans << i if num % i == 0
+  end
+  ans << num
+end
+
+puts find_divisors(28)
