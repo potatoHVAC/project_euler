@@ -1,0 +1,19 @@
+require 'set'
+
+def is_prime?(n)
+  (2..n**0.5).each { |i| return false if n%i == 0 }
+  true
+end
+
+def populate_primes(min, max)
+  primes = Set.new
+  (min..max).each { |i| primes.add(i) if is_prime?(i)}
+  primes
+end
+
+def main
+  prime_set = populate_primes(10**3, 10**4)
+end
+
+print(main)
+  

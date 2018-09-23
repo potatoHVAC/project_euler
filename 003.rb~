@@ -1,0 +1,9 @@
+
+def main(num)
+  (2..num).each do |i|
+    num = num / i while num % i == 0
+    return [i, num] if num > i
+  end
+end
+
+print(main(12))

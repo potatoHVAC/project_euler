@@ -1,0 +1,7 @@
+def number(arr):
+    total = 0
+    for i, num in enumerate(arr):
+        total += num * 10**i
+    return total
+
+print(number([4,5,6]))

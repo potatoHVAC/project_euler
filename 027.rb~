@@ -1,0 +1,15 @@
+
+def quad(a, b, n)
+  n**2 + a * n + b
+end
+
+def not_prime?(n)
+  (2..n**0.5).each { |i| return true if n % i == 0 }
+  false
+end
+
+def prime_lst_len(a, b)
+  (0..b).each { |i| return i if not_prime?(quad(a, b, i))}
+end
+
+p prime_lst_len(1, 41)

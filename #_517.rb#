@@ -1,0 +1,22 @@
+def is_prime?(num)
+  (2..num**0.5).each { |i| return false if num % i == 0 }
+  true
+end
+
+class Game
+
+  def initialize(a)
+    @a = a**0.5
+    @start = a
+    @dict = {}
+  end
+  
+  def g(x = @start)
+    return 1 if x < @a
+    g(x-1) + g(x-@a)
+  end
+
+  def last_g(x = @start)
+    
+end
+

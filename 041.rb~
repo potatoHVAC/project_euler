@@ -1,0 +1,22 @@
+
+class Permutations
+
+  def initialize(arr)
+    @arr = arr
+  end
+
+  def perm(arr = @arr)
+    return [arr] if arr.length <= 1
+    set = []
+    (0...arr.length).each do |i|
+      ele = arr[i]
+      remaining_arr = arr[0...i] + arr[i+1...arr.length]
+      set += perm(remaining_arr).map { |a| a.unshift(ele) }
+    end
+
+    set
+  end
+end
+
+a = Permutations.new([3,2,1])
+p(a.perm)
