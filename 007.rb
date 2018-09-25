@@ -1,4 +1,19 @@
-
+# Problem 007: 10001st prime
+#---------------------------------------------------------------------------------------------------
+# By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the
+# 6th prime is 13.
+#
+# What is the 10 001st prime number?
+#---------------------------------------------------------------------------------------------------
+#
+# main(<input>)
+#   <input> positive integer
+#   outputs the prime number thats the <input> smallest
+#
+# is_prime(<input>)
+#   <input> integer
+#   outputs true if <input> is prime, else false
+#
 
 def is_prime(num)
   (2..num**0.5).each { |i| return false if num % i == 0 }
@@ -14,4 +29,7 @@ def main(top)
   end
 end
 
-p(main(10001))
+#---------------------------------------------------------------------------------------------------
+
+euler_input = 10001
+puts main(euler_input)

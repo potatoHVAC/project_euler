@@ -1,11 +1,22 @@
+# Problem 010: Summation of primes
+#---------------------------------------------------------------------------------------------------
+# The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+#
+# Find the sum of all the primes below two million.
+#---------------------------------------------------------------------------------------------------
+#
+# main(<input>)
+#   <input> positive integer
+#   outputs the sum of all primes below <input>
+#
 
-def is_prime?(num)
-  (2..num**0.5).each { |i| return false if num % i == 0 }
-  true
-end
+require './helper_prog/primes_class.rb'
 
 def main(top)
-  (1 ... top).inject(0) { |tot, i| is_prime?(i) ? tot + i : tot }
+  Primes.new(top).lst.sum
 end
 
-puts main(2 * 10**6)
+#---------------------------------------------------------------------------------------------------
+
+euler_input = 2 * 10**6
+puts main(euler_input)

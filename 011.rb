@@ -1,5 +1,5 @@
 # coding: utf-8
-# Largest Product in a Grid
+# Problem 011: Largest Product in a Grid
 #---------------------------------------------------------------------------------------------------
 # In the 20×20 grid below, four numbers along a diagonal line have been marked in red.
 #
@@ -7,8 +7,58 @@
 #                                                                                  
 # The product of these numbers is 26 × 63 × 78 × 14 = 1788696.
 #
-# What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
+# What is the greatest product of four adjacent numbers in the same direction
+# (up, down, left, right, or diagonally) in the 20×20 grid?
 #---------------------------------------------------------------------------------------------------
+#
+# main(<input_matrix>, <input_length>)
+#   <input_matrix> 2D array of integers
+#   <input_length> the length of consecutive numbers to compare
+#     * length must be less than or equal to matrix height and width
+#   outputs the maximum sum of <input_length> adjecent numbers in the <input_matrix> 
+#
+# horizontal_line(row, col, matrix, row_len, line_len)
+#   <row> integer for row
+#   <col> integer for column
+#   <matrix> the matrix to check
+#   <row_len> integer for length of row
+#   <line_len> integer for number of adjecent integers to chec
+#   outputs the product of <line_len> adjacent integers from position(<row>, <col>) horizontally to the right, returns zero if line goes out of bounds
+#
+# vertical_line(row, col, matrix, col_len, line_len)
+#   <row> integer for row
+#   <col> integer for column
+#   <matrix> the matrix to check
+#   <col_len> integer for length of row
+#   <line_len> integer for number of adjecent integers to check
+#   outputs the product of <line_len> adjacent integers from position(<row>, <col>) vertically down, returns zero if line goes out of bounds
+#
+# slash_line(row, col, matrix, col_len, line_len)
+#   <row> integer for row
+#   <col> integer for column
+#   <matrix> the matrix to check
+#   <col_len> integer for length of row
+#   <line_len> integer for number of adjecent integers to check
+#   outputs the product of <line_len> adjacent integers from position(<row>, <col>) down and to the left, returns zero if line goes out of bounds
+#
+# back_slash_line(row, col, matrix, row_len, col_len, line_len)
+#   <row> integer for row
+#   <col> integer for column
+#   <matrix> the matrix to check
+#   <row_len> integer for length of row
+#   <col_len> integer for length of row
+#   <line_len> integer for number of adjecent integers to check
+#   outputs the product of <line_len> adjacent integers from position(<row>, <col>) down and to the right, returns zero if line goes out of bounds
+#
+# max_for_pos(row, col, matrix, row_length, col_length, line_length)
+#   <row> integer for row
+#   <col> integer for column
+#   <matrix> the matrix to check
+#   <row_length> integer for length of row
+#   <col_length> integer for length of row
+#   <line_length> integer for number of adjecent integers to check
+#   outputs the maximum of the 4 possible lines from the position(<row>, <col>)
+#
 
 def horizontal_line(row, col, matrix, row_len, line_len)
   return 0 if col > row_len - line_len
@@ -58,7 +108,7 @@ end
 
 #---------------------------------------------------------------------------------------------------
 
-problem_input = '''
+euler_input = '''
 08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
@@ -81,4 +131,4 @@ problem_input = '''
 01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48
 '''.strip.split("\n").map { |row| row.split(' ').map(&:to_i) }
 
-p(main(problem_input, 4))
+puts main(euler_input, 4)
