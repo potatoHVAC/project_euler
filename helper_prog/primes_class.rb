@@ -4,7 +4,7 @@
 #---------------------------------------------------------------------------------------------------
 #
 # @top -> The highest number checked in the set of Primes
-# @arr -> Array with all primes equal or below @top
+# @lst -> Array with all primes equal or below @top
 # @set -> Hashmap with prime numbers for keys and @arr index for values
 # @prime_bool -> Boolean array of length (@top + 1) where @prime_bool[i]==true for all prime i
 # @largest_found_prime -> the largets prime in the set
@@ -18,13 +18,13 @@
 #      * <arg> sets @top which is the highest value checked
 # 
 # Primes.includes?(<arg>)
-#   returns true if <arg> is prime
-#   returns false if <arg> is not prime
+#   <arg> integer
+#   outputs true if <arg> is prime
 #      * Automatically adjusts @top if <arg> > @top
 #
 # Primes.index(<arg>)
-#   returns the index of <arg> in the prime list
-#   returns nil if <arg> is not prime
+#   <arg> positive integer
+#   outputs the index of <arg> in @lst, nil if <arg not prime
 #      * Automatically adjusts @top if <arg> > @top
 #
 #---------------------------------------------------------------------------------------------------
@@ -32,8 +32,8 @@
 #---------------------------------------------------------------------------------------------------
 #
 # Primes.is_prime(<arg>)
-#   returns true if <arg> is prime
-#   returns false if <arg> is not prime
+#   <arg> integer
+#   outputs true if <arg> is prime
 #      * This method efficient for checking large prime numbers once
 #      * Should only be used if checking a few numbers once.
 #      * Inefficient for repeated checks.
@@ -68,13 +68,12 @@ class Primes
     true
   end
 
-  private
-  
+    private
+
+    # scans @prime_bool updating it and assigning prime numbers to @set
+    #   * Ex. @set[prime] = index_in_lst
     def populate_set(start=3, stop=@top, set={2 => 0})
-      set.each do |k,_|
-        ([(start / k), 2].max .. (stop / k)).each { |n| @prime_bool[k * n] = false}
-      end
-      
+      update_bool_with_set(start, stip, set)
       (start..stop).each do |i|
         if @prime_bool[i]
           if !set[i]
@@ -89,6 +88,12 @@ class Primes
       set
     end
 
+    def update_bool_with_set(start, stop, set)
+      set.each do |k,_|
+        ([(start / k), 2].max .. (stop / k)).each { |n| @prime_bool[k * n] = false}
+      end
+    end
+
     def populate_lst
       @set.map { |k,v| k }
     end
@@ -100,4 +105,5 @@ class Primes
       @top = new_top
     end
 end
+
 

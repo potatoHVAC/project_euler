@@ -2,6 +2,11 @@
 #---------------------------------------------------------------------------------------------------# Work out the first ten digits of the sum of <euler_input>'s one-hundred 50-digit numbers.
 #---------------------------------------------------------------------------------------------------
 #
+# main(arr, mod_len)
+#   <arr> array of integers to add
+#   <mod_len> integer for number of characters to return
+#   outputs the first <mod_len> characters of the sum of all integers in <arr>
+#
 
 def main(arr, mod_len)
   arr.sum.to_s[0...mod_len].to_i

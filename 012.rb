@@ -19,7 +19,21 @@
 #
 # What is the value of the first triangle number to have over five hundred divisors?
 #---------------------------------------------------------------------------------------------------
-
+# Class Variables
+#---------------------------------------------------------------------------------------------------
+#
+# @target_divisor_count -> the minimum number of divisors we want to find
+# @index -> current max integer for finding the next triangle number
+# @t_num -> current triangle number sum
+# @max_found -> array of [index, t_num, number of divisors]
+#
+#---------------------------------------------------------------------------------------------------
+# Instance Methods
+#---------------------------------------------------------------------------------------------------
+# 
+# main
+#   outputs the first triangle number that has more divisors than @target
+#
 
 class TriangleNumbers
 
@@ -30,43 +44,58 @@ class TriangleNumbers
     @max_found = [0, 0, 0] # index, t_num, divisor_count
   end
 
-  def solve
+  def main
     nxt_triangle_number while not_solved?
     self
-  end
-
-  def is_square?(num)
-    Math.sqrt(num).floor**2 == num
-  end
-  
-  def count_divisors(num)
-    count = 0
-    top = Math.sqrt(num)
-    (1..top).each { |n| count += 2 if num % n == 0 }
-    count -= 1 if is_square?(num)
-    count
-  end
-  
-  def nxt_triangle_number
-    @index += 1
-    @t_num += @index
-    divisor_count = count_divisors(@t_num)
-    compare_to_last_max(divisor_count)
-    puts(self.to_s + '::' + @index.to_s) if @index % 100 == 0
-  end
-
-  def compare_to_last_max(num)
-    @max_found = [@index, @t_num, num] if num > @max_found[2]
-  end
-
-  def not_solved?
-    @max_found[2] < @target_divisor_count
   end
 
   def to_s
     strings = @max_found.map(&:to_s)
     strings[0] + ': ' + strings[1] + ' -> ' + strings[2]
   end
+  
+    private
+
+    # <num> positive integer
+    # outputs true if <input> is a perfect square, else false
+    def is_square?(num)
+      Math.sqrt(num).floor**2 == num
+    end
+
+    # <num>
+    # outputs the total number of uniquie divisors of <num>
+    def count_divisors(num)
+      count = 0
+      top = Math.sqrt(num)
+      (1..top).each { |n| count += 2 if num % n == 0 }
+      count -= 1 if is_square?(num)
+      count
+    end
+
+    # outputs the next triangle number in the series
+    #   * prints max_found at intervals of 100
+    def nxt_triangle_number
+      @index += 1
+      @t_num += @index
+      divisor_count = count_divisors(@t_num)
+      compare_to_last_max(divisor_count)
+      puts(self.to_s + '::' + @index.to_s) if @index % 100 == 0
+    end
+
+    # <num>
+    # output none
+    #   * checks current triangle number against @max_found
+    def compare_to_last_max(num)
+      @max_found = [@index, @t_num, num] if num > @max_found[2]
+    end
+
+    # outputs true if current triangle number's divisor count is greater than @target
+    def not_solved?
+      @max_found[2] < @target_divisor_count
+    end
 end
 
-puts(TriangleNumbers.new(500).solve)
+#---------------------------------------------------------------------------------------------------
+
+euler_input = 500
+puts TriangleNumbers.new(euler_input).main
