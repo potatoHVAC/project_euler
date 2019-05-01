@@ -1,7 +1,0 @@
-
-
-def pwr_sum(pwr)
-  (2**pwr).to_s.split('').map(&:to_i).sum
-end
-
-puts(pwr_sum(1000))

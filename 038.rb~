@@ -1,9 +1,0 @@
-def nine_pandigital?(num)
-  arr = num.to_s.split('')
-  return false if arr.length != 9
-  dict = Hash.new
-  arr.each { |n| dict[n] ? return false : dict[n] = true}
-  true
-end
-
-print(nine_pagigital?(123456789))

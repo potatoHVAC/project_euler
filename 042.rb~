@@ -1,2 +1,0 @@
-input_txt = File.new('./problem_imput_txt/042_words.txt', 'r')
-puts input_txt

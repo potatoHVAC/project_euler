@@ -1,8 +1,0 @@
-class LetterNum
-
-  def tst
-    print('hi')
-  end
-end
-
-LetterNum.new.tst
